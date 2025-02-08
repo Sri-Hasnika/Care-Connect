@@ -1,21 +1,3 @@
-// export interface Doctor {
-//   id: string;
-//   name: string;
-//   specialty: string;
-//   availability: string[];
-//   rating: number;
-//   imageUrl: string;
-//   experience: number;
-//   languages: string[];
-//   consultationFee: number;
-//   education: string;
-//   bio?: string;
-//   certifications?: string[];
-//   publications?: string[];
-//   specializations?: string[];
-//   awards?: string[];
-// }
-
 export interface Doctor {
   id: string;
   name: string;
@@ -27,7 +9,25 @@ export interface Doctor {
   languages: string[];
   consultationFee: number;
   education: string;
+  bio?: string;
+  certifications?: string[];
+  publications?: string[];
+  specializations?: string[];
+  awards?: string[];
 }
+
+// export interface Doctor {
+//   id: string;
+//   name: string;
+//   specialty: string;
+//   availability: string[];
+//   rating: number;
+//   imageUrl: string;
+//   experience: number;
+//   languages: string[];
+//   consultationFee: number;
+//   education: string;
+// }
 
 export interface Patient {
   id: string;

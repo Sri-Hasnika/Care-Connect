@@ -12,6 +12,8 @@ import ConsultationReasons from './components/Consultation.tsx';
 import HealthInsights from './pages/HealthInsights';
 import Alerts from './pages/Alerts';
 import DoctorCard from './components/DoctorCard.tsx';
+import DocDetailsWrapper from './pages/DocDetailsWrapper.tsx';
+import PaymentWrapper from './pages/PaymentWrapper.tsx';
 import Consultation from './pages/Consultation.tsx';
 
 // Protected Route component
@@ -88,7 +90,7 @@ function App() {
             <p className="text-lg text-muted-foreground">No doctors found for this specialty</p>
           </div>
         ) : (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-5">
             {filteredDoctors.map((doctor) => (
               <DoctorCard
                 key={doctor.id}
@@ -114,6 +116,18 @@ function App() {
               <Consultation />
             </ProtectedRoute>
           } />
+          <Route path="/payment/:id" element={
+            <ProtectedRoute>
+              {/* <Consultation /> */}
+              <PaymentWrapper />
+            </ProtectedRoute>
+          } />
+          <Route path="/doc-details/:id" element={
+            <ProtectedRoute>
+              <DocDetailsWrapper />
+            </ProtectedRoute>
+          } />
+
         </Routes>
       </div>
     </Router>

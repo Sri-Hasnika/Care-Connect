@@ -27,7 +27,7 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ doctor }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 p-4"
+      className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 p-4 mx-5"
     >
       <div className="flex items-center gap-4">
         <div className="h-16 w-16 rounded-full overflow-hidden bg-gray-200">
@@ -55,8 +55,17 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ doctor }) => {
           <p className="text-sm font-medium">Consultation Fee: ${doctor.consultationFee}</p>
         </div>
       </div>
-      <div className="mt-4">
+      {/* <div className="mt-4">
         <button className="w-full py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors" onClick={()=>(navigate("/meet"))}>Book Consultation</button>
+      </div> */}
+
+      <div className="flex justify-around gap-6 w-full">
+        <div className="mt-4">
+          <button className="w-full py-2 px-4 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors" onClick={()=>(navigate(`/doc-details/${doctor.id}`))}>View Details</button>
+        </div>
+        <div className="mt-4">
+          <button className="w-full py-2 px-4 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors" onClick={()=>(navigate(`/payment/${doctor.id}`))}>Book Consultation</button>
+        </div>
       </div>
     </motion.div>
   );
