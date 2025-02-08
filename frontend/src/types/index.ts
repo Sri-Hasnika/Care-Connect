@@ -3,6 +3,7 @@ export interface Doctor {
   name: string;
   specialty: string;
   availability: string[];
+  email:string;
   rating: number;
   imageUrl: string;
   experience: number;

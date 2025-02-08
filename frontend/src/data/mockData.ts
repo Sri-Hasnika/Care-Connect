@@ -4,6 +4,7 @@ export const doctors: Doctor[] = [
   {
     id: '1',
     name: 'Dr. Sarah Chen',
+    email: 'sarah.chen@example.com',
     specialty: 'General Physician',
     availability: ['Mon', 'Wed', 'Fri'],
     rating: 4.8,
@@ -20,6 +21,7 @@ export const doctors: Doctor[] = [
   {
     id: '2',
     name: 'Dr. Michael Patel',
+    email: 'michael.patel@example.com',
     specialty: 'Pediatrician',
     availability: ['Tue', 'Thu', 'Sat'],
     rating: 4.9,
@@ -36,6 +38,7 @@ export const doctors: Doctor[] = [
   {
     id: '3',
     name: 'Dr. Emily Rodriguez',
+    email: 'emily.rodriguez@example.com',
     specialty: 'Cardiologist',
     availability: ['Mon', 'Tue', 'Thu'],
     rating: 4.7,
@@ -52,6 +55,7 @@ export const doctors: Doctor[] = [
   {
     id: '4',
     name: 'Dr. James Wilson',
+    email: 'james.wilson@example.com',
     specialty: 'Dermatologist',
     availability: ['Wed', 'Thu', 'Fri'],
     rating: 4.6,
@@ -68,6 +72,7 @@ export const doctors: Doctor[] = [
   {
     id: '5',
     name: 'Dr. Aisha Khan',
+    email: 'aisha.khan@example.com',
     specialty: 'Psychiatrist',
     availability: ['Mon', 'Wed', 'Sat'],
     rating: 4.9,
@@ -84,6 +89,7 @@ export const doctors: Doctor[] = [
   {
     id: '6',
     name: 'Dr. David Lee',
+    email: 'david.lee@example.com',
     specialty: 'Ophthalmologist',
     availability: ['Mon', 'Wed', 'Fri'],
     rating: 4.8,
@@ -100,6 +106,7 @@ export const doctors: Doctor[] = [
   {
     id: '7',
     name: 'Dr. Maria Santos',
+    email: 'maria.santos@example.com',
     specialty: 'Pulmonologist',
     availability: ['Tue', 'Thu', 'Sat'],
     rating: 4.7,
@@ -116,6 +123,7 @@ export const doctors: Doctor[] = [
   {
     id: '8',
     name: 'Dr. John Smith',
+    email: 'john.smith@example.com',
     specialty: 'Orthopedic',
     availability: ['Mon', 'Wed', 'Fri'],
     rating: 4.9,
@@ -132,6 +140,7 @@ export const doctors: Doctor[] = [
   {
     id: '9',
     name: 'Dr. Lisa Chen',
+    email: 'lisa.chen@example.com',
     specialty: 'Allergist',
     availability: ['Tue', 'Thu', 'Sat'],
     rating: 4.8,
@@ -146,6 +155,7 @@ export const doctors: Doctor[] = [
     awards: ['Allergy Research Innovation Award 2023']
   }
 ];
+
 
 export const sampleCredentials = {
   doctor: {
