@@ -56,9 +56,7 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ doctor }) => {
         </div>
       </div>
       
-      {/* <div className="mt-4">
-        <button className="w-full py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors" onClick={()=>(navigate("/meet"))}>Book Consultation</button>
-      </div> */}
+ 
 
       <div className="flex justify-around gap-6 w-full">
         <div className="mt-4">

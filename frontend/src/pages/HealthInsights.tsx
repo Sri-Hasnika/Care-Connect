@@ -34,7 +34,6 @@ const HealthInsights = () => {
     try {
       const genAI = new GoogleGenerativeAI("AIzaSyDNGlNmcXV2JwLq-h_Sxs-SpfIoob9vVWo");
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-      // const prompt = `You are an AI health assistant. Based on the following symptoms: ${input}, provide a brief diagnosis (within 100-150 words) with the likelihood of the condition. Additionally, suggest treatments with their success rates. Keep the response concise and within the word limit.`;
       const prompt = `You are an AI health assistant. Based on the following symptoms: ${input}, provide a brief diagnosis (within 100-150 words) with the likelihood of the condition. Additionally, provide the following insights: 
 - The severity of the symptoms and their likely causes.
 - Preventive care tips to manage the symptoms or condition.
