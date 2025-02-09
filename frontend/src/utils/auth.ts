@@ -6,7 +6,6 @@ interface User {
   password: string;
 }
 
-// Mock users data
 const mockUsers: User[] = [
   {
     id: '1',
@@ -24,7 +23,6 @@ const mockUsers: User[] = [
   }
 ];
 
-// Initialize local storage with mock users
 if (!localStorage.getItem('users')) {
   localStorage.setItem('users', JSON.stringify(mockUsers));
 }
@@ -43,7 +41,7 @@ export const login = (email: string, password: string): User | null => {
 export const signup = (userData: Omit<User, 'id'>): User | null => {
   const users: User[] = JSON.parse(localStorage.getItem('users') || '[]');
   
-  // Check if email already exists
+
   if (users.some(u => u.email === userData.email)) {
     return null;
   }

@@ -26,7 +26,6 @@ const Signup = () => {
 
   return (
     <div className="min-h-screen flex">
-      {/* Left side - Image */}
       <div className="hidden lg:block lg:w-1/2 relative">
         <img 
           src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
@@ -41,7 +40,7 @@ const Signup = () => {
         </div>
       </div>
 
-      {/* Right side - Form */}
+
       <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12 bg-gray-50">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

@@ -16,7 +16,7 @@ import DocDetailsWrapper from './pages/DocDetailsWrapper.tsx';
 import PaymentWrapper from './pages/PaymentWrapper.tsx';
 import Consultation from './pages/Consultation.tsx';
 
-// Protected Route component
+
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const user = getCurrentUser();
   if (!user) {
@@ -25,7 +25,6 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 
-// Role-specific Route component
 const RoleRoute = ({ children, allowedRole }: { children: React.ReactNode, allowedRole: 'patient' | 'doctor' }) => {
   const user = getCurrentUser();
   if (!user) {
@@ -53,21 +52,19 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           
-          {/* Patient Routes */}
           <Route path="/dashboard" element={
             <RoleRoute allowedRole="patient">
               <Dashboard />
             </RoleRoute>
           } />
-          
-          {/* Doctor Routes */}
+
           <Route path="/doctor-dashboard" element={
             <RoleRoute allowedRole="doctor">
               <DoctorDashboard />
             </RoleRoute>
           } />
           
-          {/* Protected Routes for both roles */}
+
           <Route path="/consultation" element={
             <ProtectedRoute>
               <ConsultationReasons 
@@ -118,7 +115,6 @@ function App() {
           } />
           <Route path="/payment/:id" element={
             <ProtectedRoute>
-              {/* <Consultation /> */}
               <PaymentWrapper />
             </ProtectedRoute>
           } />

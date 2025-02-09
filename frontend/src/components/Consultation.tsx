@@ -4,14 +4,13 @@ import { Heart, Brain, Stethoscope, Baby, Bone, Eye, Thermometer, Pill, Smile, A
 import { FaTooth } from "react-icons/fa";
 import { BsFillLungsFill } from "react-icons/bs";
 
-// Define the structure for ConsultationReason
 interface ConsultationReason {
   icon: React.ReactNode;
   label: string;
   specialty: string;
 }
 
-// Array containing the reasons for consultation
+
 const consultationReasons: ConsultationReason[] = [
   { icon: <Heart size={28} />, label: 'Heart Problems', specialty: 'Cardiologist' },
   { icon: <Brain size={28} />, label: 'Mental Health', specialty: 'Psychiatrist' },

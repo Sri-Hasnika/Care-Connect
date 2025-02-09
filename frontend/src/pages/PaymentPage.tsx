@@ -15,7 +15,7 @@ const PaymentPage: React.FC<PaymentPageProps> = ({ consultationFee }) => {
   const handlePayment = () => {
     setIsLoading(true);
 
-    // Simulate API call or payment process
+
     setTimeout(() => {
       setIsLoading(false);
       toast.success("Payment Successful", {
@@ -23,7 +23,6 @@ const PaymentPage: React.FC<PaymentPageProps> = ({ consultationFee }) => {
         autoClose: 1500,
       });
 
-      // Redirect to another page after payment
       setTimeout(() => {
         navigate("/meet");
       }, 2000);
@@ -54,7 +53,7 @@ const PaymentPage: React.FC<PaymentPageProps> = ({ consultationFee }) => {
           </select>
         </div>
 
-        {/* Payment Details Form */}
+
         {paymentMethod === "creditCard" && (
           <div className="mb-4">
             <input
@@ -110,7 +109,7 @@ const PaymentPage: React.FC<PaymentPageProps> = ({ consultationFee }) => {
         </button>
       </div>
 
-      {/* Toast Notification */}
+
       <ToastContainer />
     </div>
   );

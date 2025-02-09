@@ -2,7 +2,6 @@ import React, { useState, FormEvent } from 'react';
 import { Video, Calendar } from 'lucide-react';
 import axios from 'axios';
 import { getCurrentUser } from '../utils/auth';
-import CalendlyWidget from '../components/CalendlyWidget';
 
 const Consultation = () => {
   const [date, setDate] = useState('');
@@ -13,8 +12,7 @@ const Consultation = () => {
   const user = getCurrentUser();
 
   const timeTo24H = (time: string) => {
-    // Add conversion logic here
-    return time; // Return formatted time
+    return time; 
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -25,21 +23,19 @@ const Consultation = () => {
       setLoading(true);
       const dateTime = new Date(`${date}T${timeTo24H(time)}`);
       
-      // Create appointment
       const appointmentRes = await axios.post('/api/appointments', {
-        doctorId: 'selected_doctor_id', // Replace with actual doctor ID
+        doctorId: 'selected_doctor_id',
         patientId: user.id,
         dateTime,
         status: 'scheduled'
       });
 
-      // Create Zoom meeting
       const meetingRes = await axios.post('/api/meetings', {
         doctorId: 'selected_doctor_id',
         startTime: dateTime.toISOString()
       });
 
-      // Update appointment with meet link
+
       await axios.patch(`/api/appointments/${appointmentRes.data.id}`, {
         meetLink: meetingRes.data.meetLink
       });
@@ -55,7 +51,6 @@ const Consultation = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-bold text-gray-900 mb-8">Virtual Consultation</h1>
-      {/* <CalendlyWidget /> */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="bg-white p-6 rounded-lg shadow-md">
           <div className="flex items-center mb-6">
