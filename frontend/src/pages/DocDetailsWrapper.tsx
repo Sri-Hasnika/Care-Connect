@@ -1,3 +1,4 @@
+import React from "react";
 import { useParams } from "react-router-dom";
 import DocDetails from "./DocDetails";
 import {doctors} from "../data/mockData"; 

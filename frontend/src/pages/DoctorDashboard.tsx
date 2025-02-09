@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Bell, AlertTriangle, CheckCircle, Calendar } from 'lucide-react';
 import ConsultationDetails from '../components/ConsultationDetails';
 import ConsultationActivityChart from '../components/ConsultationActivityChart';

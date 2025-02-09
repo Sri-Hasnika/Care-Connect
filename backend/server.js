@@ -1,38 +1,27 @@
 const express = require('express');
-const axios = require('axios');
-const app = express();
-const cors = require('cors');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const doctorRoutes = require('./routes/doctor');
+const patientRoutes = require('./routes/patient');
+const appointmentRoutes = require('./routes/appointment');
 
-app.use(cors());
+dotenv.config();
+
+const app = express();
 app.use(express.json());
 
-const API_KEY = 'AIzaSyDNGlNmcXV2JwLq-h_Sxs-SpfIoob9vVWo';
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.log(err));
 
-app.post('/analyze-image', async (req, res) => {
-    const { imageBase64 } = req.body;
-  
-    if (!imageBase64) {
-      return res.status(400).json({ error: 'No image provided' });
-    }
-  
-    try {
-      const response = await axios.post(
-        `https://vision.googleapis.com/v1/images:annotate?key=${API_KEY}`,
-        {
-          requests: [
-            {
-              image: { content: imageBase64 },
-              features: [{ type: 'LABEL_DETECTION', maxResults: 5 }],
-            },
-          ],
-        }
-      );
-      res.json(response.data);
-    } catch (error) {
-      console.error('Error analyzing image:', error);  // Log the error details
-      res.status(500).json({ error: 'Error analyzing image', details: error.message });
-    }
-  });
-  
+// Use routes
+app.use('/api', doctorRoutes);
+app.use('/api', patientRoutes);
+app.use('/api', appointmentRoutes);
 
-app.listen(5000, () => console.log('Server running on http://localhost:5000'));
+// Start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

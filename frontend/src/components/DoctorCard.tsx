@@ -29,35 +29,31 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ doctor }) => {
       transition={{ duration: 0.3 }}
       className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 p-4 mx-5"
     >
-      
-      <div className="flex items-center justify-between">
-      <div className="h-full w-80 rounded-lg overflow-hidden bg-gray-200">
+      <div className="flex items-center gap-4">
+        <div className="h-36 w-36 rounded-full overflow-hidden bg-gray-200">
           <img src={doctor.imageUrl} alt={doctor.name} className="h-full w-full object-cover" />
         </div>
-        <div className="my-2">
-          <div className="flex items-center gap-4">
-            <div>
-              <h3 className="text-lg font-semibold">{doctor.name}</h3>
-              <p className="text-sm text-gray-500">{doctor.specialty}</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2 my-2">
-            <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-            <span className="text-sm">{doctor.rating} / 5.0</span>
-          </div>
-          <div className="flex flex-wrap gap-2 mb-4">
-            {doctor.availability.map((day) => (
-              <span key={day} className="px-2 py-1 text-xs font-semibold bg-gray-200 rounded-md">{day}</span>
-            ))}
-          </div>
-          <div className="space-y-6">
-            <p className="text-sm text-gray-500">{doctor.experience} years of experience</p>
-            <p className="text-sm text-gray-500">{doctor.education}</p>
-            <p className="text-sm">Languages: {doctor.languages.join(', ')}</p>
-            <p className="text-sm font-medium">Consultation Fee: <span className='font-semibold'>₹{" "}{doctor.consultationFee}</span></p>
-          </div>
+        <div>
+          <h3 className="text-lg font-semibold">{doctor.name}</h3>
+          <p className="text-sm text-gray-500">{doctor.specialty}</p>
         </div>
-        
+      </div>
+      <div className="mt-4 ">
+        <div className="flex items-center gap-2 mb-2">
+          <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+          <span className="text-sm">{doctor.rating} / 5.0</span>
+        </div>
+        <div className="flex flex-wrap gap-2 mb-4">
+          {doctor.availability.map((day) => (
+            <span key={day} className="px-2 py-1 text-xs font-semibold bg-gray-200 rounded-md">{day}</span>
+          ))}
+        </div>
+        <div className="space-y-2">
+          <p className="text-sm text-gray-500">{doctor.experience} years of experience</p>
+          <p className="text-sm text-gray-500">{doctor.education}</p>
+          <p className="text-sm">Languages: {doctor.languages.join(', ')}</p>
+          <p className="text-sm font-medium">Consultation Fee: <span className='font-semibold'>₹{" "}{doctor.consultationFee}</span></p>
+        </div>
       </div>
       
       {/* <div className="mt-4">
