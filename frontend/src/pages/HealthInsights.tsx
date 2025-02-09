@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Brain, AlertCircle } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { Chart } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
-// Register Chart.js components
+
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const seasonalSymptoms = [
@@ -18,7 +19,7 @@ const HealthInsights = () => {
   const [analysis, setAnalysis] = useState<string | null>(null);
   const [chartData, setChartData] = useState<any>(null);
 
-  const input = symptoms || selectedSymptoms.join(', ');
+  const input = symptoms + selectedSymptoms.join(', ');
 
   const handleSymptomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
@@ -30,30 +31,25 @@ const HealthInsights = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Use the Google Generative AI API (Gemini Model)
     try {
       const genAI = new GoogleGenerativeAI("AIzaSyDNGlNmcXV2JwLq-h_Sxs-SpfIoob9vVWo");
-
-      // Load the Gemini model (or other models available)
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      // const prompt = `You are an AI health assistant. Based on the following symptoms: ${input}, provide a brief diagnosis (within 100-150 words) with the likelihood of the condition. Additionally, suggest treatments with their success rates. Keep the response concise and within the word limit.`;
+      const prompt = `You are an AI health assistant. Based on the following symptoms: ${input}, provide a brief diagnosis (within 100-150 words) with the likelihood of the condition. Additionally, provide the following insights: 
+- The severity of the symptoms and their likely causes.
+- Preventive care tips to manage the symptoms or condition.
+- When to seek professional medical help.`;
 
-      // Define the more confident and clear prompt
-      const prompt = `You are an AI health assistant. Based on the following symptoms: ${input}, provide a clear diagnosis with the likelihood of the condition. Also, suggest treatments and their success rate:`;
-
-      // Request AI-generated content
       const result = await model.generateContent(prompt);
-
-      // Handle the AI-generated result
       const aiResponse = result.response.text();
       setAnalysis(aiResponse);
 
-      // Generate a DV graph based on simulated data for treatment success rate
       const simulatedTreatmentData = {
         labels: ['Treatment A', 'Treatment B', 'Treatment C'],
         datasets: [
           {
             label: 'Treatment Success Rate',
-            data: [80, 65, 90], // Success rates of treatments (in %)
+            data: [80, 65, 90],
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1,
@@ -122,7 +118,8 @@ const HealthInsights = () => {
               <AlertCircle className="h-6 w-6 text-blue-600 mr-2" />
               <h2 className="text-xl font-semibold">Analysis Results</h2>
             </div>
-            <p className="text-gray-700">{analysis}</p>
+            {/* Render markdown content */}
+            <ReactMarkdown className="text-gray-700">{analysis}</ReactMarkdown>
 
             {/* Chart.js Graph */}
             {chartData && (

@@ -18,7 +18,7 @@ const Dashboard = () => {
 
         <Link to="/health-insights" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
           <div className="flex items-center mb-4">
-            <Brain className="h-6 w-6 text-blue-600 mr-2" />
+            <Brain className="h-6 w-6 text-purple-600 mr-1" />
             <h2 className="text-xl font-semibold">Health Insights</h2>
           </div>
           <p className="text-gray-600">Get AI-powered health analysis</p>
@@ -31,27 +31,6 @@ const Dashboard = () => {
           </div>
           <p className="text-gray-600">View your health alerts and notifications</p>
         </Link>
-      </div>
-
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-xl font-semibold mb-4">Upcoming Appointments</h2>
-        <div className="space-y-4">
-          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-            <div className="flex items-center">
-              <Video className="h-5 w-5 text-blue-600 mr-3" />
-              <div>
-                <p className="font-medium">Virtual Consultation with Dr. Sarah Smith</p>
-                <p className="text-sm text-gray-500">Tomorrow at 10:00 AM</p>
-              </div>
-            </div>
-            <Link
-              to="/consultation"
-              className="px-4 py-2 text-sm text-blue-600 hover:text-blue-700"
-            >
-              Join Call
-            </Link>
-          </div>
-        </div>
       </div>
     </div>
   );
