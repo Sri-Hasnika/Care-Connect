@@ -1,3 +1,4 @@
+import React from 'react';
 import { Video, Calendar} from 'lucide-react';
 
 const Consultation = () => {

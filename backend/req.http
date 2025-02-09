@@ -1,0 +1,71 @@
+### Test: Create a new doctor
+POST http://localhost:5000/api/doctors
+Content-Type: application/json
+
+{
+  "id": "doctor1",
+  "name": "Dr. John Doe",
+  "specialty": "Cardiologist",
+  "availability": ["Monday", "Wednesday", "Friday"],
+  "email": "dr.johndoe@example.com",
+  "rating": 4.8,
+  "imageUrl": "http://example.com/images/dr_john_doe.jpg",
+  "experience": 15,
+  "languages": ["English", "Spanish"],
+  "consultationFee": 200,
+  "education": "MD, Harvard University",
+  "bio": "Experienced cardiologist specializing in heart disease.",
+  "certifications": ["Certified Cardiologist"],
+  "publications": ["Heart Health Journal"],
+  "specializations": ["Hypertension", "Arrhythmia"],
+  "awards": ["Best Cardiologist 2023"]
+}
+
+### Test: Get all doctors
+GET http://localhost:5000/api/doctors
+
+### Test: Create a new patient
+POST http://localhost:5000/api/patients
+Content-Type: application/json
+
+{
+  "id": "patient1",
+  "name": "Alice Smith",
+  "email": "alice.smith@example.com",
+  "phone": "1234567890",
+  "dateOfBirth": "1990-05-15",
+  "gender": "Female",
+  "bloodGroup": "O+",
+  "allergies": ["Peanuts", "Dust"],
+  "medications": ["Lisinopril"],
+  "medicalHistory": ["Hypertension", "Asthma"],
+  "emergencyContact": {
+    "name": "Bob Smith",
+    "phone": "0987654321",
+    "relationship": "Brother"
+  }
+}
+
+### Test: Get all patients
+GET http://localhost:5000/api/patients
+
+### Test: Create a new appointment
+POST http://localhost:5000/api/appointments
+Content-Type: application/json
+
+{
+  "id": "appointment1",
+  "doctorId": "67a836fa3ec9a6a164df7f95",
+  "patientId": "67a837053ec9a6a164df7f98",
+  "dateTime": "2025-02-15T10:00:00Z",
+  "status": "scheduled",
+  "meetLink": "http://meet.example.com/appointment1",
+  "symptoms": ["Chest Pain", "Shortness of Breath"],
+  "diagnosis": "Pending",
+  "prescription": "Pending",
+  "followUp": "2025-03-15",
+  "notes": "Initial consultation for chest pain."
+}
+
+### Test: Get all appointments
+GET http://localhost:5000/api/appointments
