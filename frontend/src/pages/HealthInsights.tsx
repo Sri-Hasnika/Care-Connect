@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Brain, AlertCircle } from 'lucide-react';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import { Chart } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+
+// Register Chart.js components
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const seasonalSymptoms = [
   'Fever', 'Cough', 'Headache', 'Body Aches', 'Sore Throat', 'Runny Nose', 'Fatigue',
@@ -10,6 +16,9 @@ const HealthInsights = () => {
   const [symptoms, setSymptoms] = useState('');
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
   const [analysis, setAnalysis] = useState<string | null>(null);
+  const [chartData, setChartData] = useState<any>(null);
+
+  const input = symptoms || selectedSymptoms.join(', ');
 
   const handleSymptomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
@@ -21,27 +30,38 @@ const HealthInsights = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Combine both text input and selected seasonal symptoms
-    const input = symptoms || selectedSymptoms.join(', ');
-
-    // Call the Google AutoML API
+    // Use the Google Generative AI API (Gemini Model)
     try {
-      const response = await axios.post('https://automl.googleapis.com/v1/projects/careconnectlite/locations/us-central1/models/{your-model-id}:predict', {
-        headers: {
-          Authorization: `Bearer AIzaSyDNGlNmcXV2JwLq-h_Sxs-SpfIoob9vVWo`,
-        },
-        data: {
-          payload: {
-            textSnippet: {
-              content: input,
-            },
-          },
-        },
-      });
+      const genAI = new GoogleGenerativeAI("AIzaSyDNGlNmcXV2JwLq-h_Sxs-SpfIoob9vVWo");
 
-      // Process the response
-      const analysisResult = response.data.payload[0].displayName;
-      setAnalysis(`Based on your symptoms, it seems like you may have ${analysisResult}. Please consult a doctor for proper diagnosis.`);
+      // Load the Gemini model (or other models available)
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+      // Define the more confident and clear prompt
+      const prompt = `You are an AI health assistant. Based on the following symptoms: ${input}, provide a clear diagnosis with the likelihood of the condition. Also, suggest treatments and their success rate:`;
+
+      // Request AI-generated content
+      const result = await model.generateContent(prompt);
+
+      // Handle the AI-generated result
+      const aiResponse = result.response.text();
+      setAnalysis(aiResponse);
+
+      // Generate a DV graph based on simulated data for treatment success rate
+      const simulatedTreatmentData = {
+        labels: ['Treatment A', 'Treatment B', 'Treatment C'],
+        datasets: [
+          {
+            label: 'Treatment Success Rate',
+            data: [80, 65, 90], // Success rates of treatments (in %)
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+          },
+        ],
+      };
+
+      setChartData(simulatedTreatmentData);
     } catch (error) {
       console.error('Error analyzing symptoms:', error);
       setAnalysis('Sorry, we encountered an issue while analyzing your symptoms. Please try again later.');
@@ -103,6 +123,15 @@ const HealthInsights = () => {
               <h2 className="text-xl font-semibold">Analysis Results</h2>
             </div>
             <p className="text-gray-700">{analysis}</p>
+
+            {/* Chart.js Graph */}
+            {chartData && (
+              <div className="mt-8">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Treatment Success Rate</h3>
+                <Chart type="bar" data={chartData} />
+              </div>
+            )}
+
             <div className="mt-4 p-4 bg-yellow-50 rounded-md">
               <p className="text-sm text-yellow-700">
                 Note: This is an AI-powered preliminary analysis. Always consult with a healthcare

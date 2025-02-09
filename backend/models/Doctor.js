@@ -17,6 +17,8 @@ const doctorSchema = new mongoose.Schema({
   publications: { type: [String] },
   specializations: { type: [String] },
   awards: { type: [String] },
+  zoomAccessToken: {type: String,},
+  zoomRefreshToken: {type: String}
 }, { timestamps: true });
 
 module.exports = mongoose.model('Doctor', doctorSchema);

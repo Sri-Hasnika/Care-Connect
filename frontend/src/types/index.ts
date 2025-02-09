@@ -17,18 +17,6 @@ export interface Doctor {
   awards?: string[];
 }
 
-// export interface Doctor {
-//   id: string;
-//   name: string;
-//   specialty: string;
-//   availability: string[];
-//   rating: number;
-//   imageUrl: string;
-//   experience: number;
-//   languages: string[];
-//   consultationFee: number;
-//   education: string;
-// }
 
 export interface Patient {
   id: string;
