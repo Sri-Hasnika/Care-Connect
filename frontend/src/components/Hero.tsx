@@ -1,5 +1,6 @@
 import React from 'react';
 import { Users, Video, Brain, Wifi } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const features = [
   {
@@ -25,6 +26,7 @@ const features = [
 ];
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <div className="relative">
       <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-blue-50 opacity-50" />
@@ -40,7 +42,7 @@ const Hero = () => {
           </p>
           <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
             <div className="rounded-md shadow">
-              <button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10">
+              <button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10" onClick={()=>navigate("/signup")}>
                 Get Started
               </button>
             </div>
